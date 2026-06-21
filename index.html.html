@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samir Bahjat — Laravel Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f172a;
+  --bg-soft:#141b2e;
+  --surface:#1a2236;
+  --surface-2:#202a42;
+  --border:#2a3550;
+  --text:#e2e8f0;
+  --muted:#8693ab;
+  --accent:#38bdf8;
+  --accent-2:#6366f1;
+  --accent-glow: rgba(56,189,248,0.35);
+  --mono: 'JetBrains Mono', monospace;
+  --head: 'Space Grotesk', sans-serif;
+  --body: 'Inter', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+::selection{background:var(--accent);color:#0f172a;}
+
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--surface-2);border-radius:10px;}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-2);}
+
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1140px;margin:0 auto;padding:0 1.5rem;}
+
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size:64px 64px;
+  opacity:0.18;
+  mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 70%);
+}
+.bg-glow{
+  position:fixed;top:-20%;left:50%;transform:translateX(-50%);
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle, var(--accent-glow), transparent 70%);
+  z-index:0;pointer-events:none;filter:blur(40px);opacity:0.5;
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(14px);
+  background:rgba(15,23,42,0.6);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s, background .3s;
+}
+nav.scrolled{border-bottom-color:var(--border);background:rgba(15,23,42,0.85);}
+.nav-inner{
+  max-width:1140px;margin:0 auto;padding:1rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{
+  font-family:var(--mono);font-weight:600;font-size:0.95rem;color:var(--text);
+  display:flex;align-items:center;gap:8px;
+}
+.logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);}
+.nav-links{display:flex;gap:2rem;font-size:0.85rem;color:var(--muted);}
+.nav-links a{transition:color .2s;position:relative;}
+.nav-links a:hover{color:var(--text);}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-6px;left:0;width:0;height:1.5px;background:var(--accent);
+  transition:width .25s;
+}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  font-family:var(--mono);font-size:0.78rem;border:1px solid var(--border);
+  padding:7px 16px;border-radius:8px;color:var(--text);transition:all .2s;
+}
+.nav-cta:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 16px var(--accent-glow);}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
+
+@media(max-width:760px){
+  .nav-links{display:none;}
+  .nav-toggle{display:block;}
+}
+
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;z-index:1;padding-top:80px;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:3rem;align-items:center;width:100%;
+}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.5rem;}}
+
+.eyebrow{
+  font-family:var(--mono);font-size:0.78rem;color:var(--accent);
+  display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;letter-spacing:0.02em;
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
+
+.hero h1{
+  font-family:var(--head);font-size:clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight:700;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.25rem;
+}
+.hero h1 .accent{
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lede{
+  font-size:1.05rem;color:var(--muted);max-width:480px;margin-bottom:2rem;
+}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn{
+  font-family:var(--body);font-weight:600;font-size:0.88rem;
+  padding:13px 28px;border-radius:10px;cursor:pointer;border:none;
+  display:inline-flex;align-items:center;gap:8px;transition:transform .2s, box-shadow .2s;
+}
+.btn-primary{
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));color:#0b1120;
+  box-shadow:0 8px 24px var(--accent-glow);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px var(--accent-glow);}
+.btn-ghost{
+  background:transparent;color:var(--text);border:1px solid var(--border);
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+.hero-meta{display:flex;gap:2rem;font-family:var(--mono);font-size:0.78rem;color:var(--muted);}
+.hero-meta b{color:var(--text);display:block;font-size:1.3rem;font-family:var(--head);}
+
+.term{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  transform-style:preserve-3d;
+  transition:transform .15s ease-out;
+}
+.term-bar{
+  display:flex;align-items:center;gap:8px;padding:12px 16px;
+  background:var(--surface-2);border-bottom:1px solid var(--border);
+}
+.term-bar span{width:11px;height:11px;border-radius:50%;}
+.term-bar span:nth-child(1){background:#ef4444;}
+.term-bar span:nth-child(2){background:#f59e0b;}
+.term-bar span:nth-child(3){background:#22c55e;}
+.term-title{
+  font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-left:8px;
+}
+.term-body{
+  padding:1.5rem 1.4rem;font-family:var(--mono);font-size:0.82rem;line-height:1.9;
+  min-height:280px;
+}
+.term-body .ln{color:var(--muted);margin-right:10px;user-select:none;}
+.term-body .kw{color:#f472b6;}
+.term-body .fn{color:var(--accent);}
+.term-body .str{color:#a5b4fc;}
+.term-body .com{color:#52607a;}
+.term-body .cls{color:#fbbf24;}
+.cursor-blink{
+  display:inline-block;width:7px;height:1em;background:var(--accent);
+  vertical-align:text-bottom;animation:blink 1s step-end infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+section{position:relative;z-index:1;padding:7rem 0;}
+.section-head{margin-bottom:3rem;}
+.section-num{
+  font-family:var(--mono);font-size:0.78rem;color:var(--accent);margin-bottom:0.75rem;
+  display:block;letter-spacing:0.05em;
+}
+.section-title{
+  font-family:var(--head);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-0.01em;
+}
+.section-sub{color:var(--muted);max-width:560px;margin-top:0.75rem;font-size:0.98rem;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+.about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:3.5rem;align-items:start;}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+.about-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;
+}
+.avatar-block{
+  width:100%;aspect-ratio:1;border-radius:14px;margin-bottom:1.5rem;
+  background:linear-gradient(135deg, var(--surface-2), var(--surface));
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--head);font-size:3.5rem;font-weight:700;color:var(--accent);
+  position:relative;overflow:hidden;
+}
+.avatar-block::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 20%, var(--accent-glow), transparent 60%);
+}
+.about-name{font-family:var(--head);font-size:1.3rem;font-weight:700;}
+.about-role{color:var(--accent);font-family:var(--mono);font-size:0.82rem;margin-top:4px;}
+.about-edu{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);font-size:0.85rem;color:var(--muted);}
+
+.about-body p{color:var(--muted);margin-bottom:1.25rem;font-size:1rem;}
+.about-body strong{color:var(--text);}
+.focus-tags{display:flex;gap:10px;margin-top:1.5rem;flex-wrap:wrap;}
+.focus-tag{
+  font-family:var(--mono);font-size:0.76rem;padding:7px 14px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);color:var(--accent);
+}
+
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+@media(max-width:860px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+.skill-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:1.5rem 1.25rem;transition:transform .25s, border-color .25s, box-shadow .25s;
+  position:relative; overflow:hidden;
+}
+.skill-card:hover{
+  transform:translateY(-6px);border-color:var(--accent);
+  box-shadow:0 20px 40px -16px var(--accent-glow);
+}
+.skill-icon{font-size:1.6rem;margin-bottom:0.9rem;display:block;}
+.skill-name{font-family:var(--head);font-weight:600;font-size:1rem;margin-bottom:4px;}
+.skill-level{font-family:var(--mono);font-size:0.72rem;color:var(--muted);}
+.skill-bar{height:3px;background:var(--surface-2);border-radius:3px;margin-top:10px;overflow:hidden;}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:3px;width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1);}
+.skill-card.in .skill-bar-fill{width:var(--lvl);}
+
+.projects-list{display:flex;flex-direction:column;gap:1.5rem;}
+.proj-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  padding:2.25rem;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;
+  transform-style:preserve-3d;transition:transform .25s ease-out, border-color .25s, box-shadow .25s;
+  cursor:default;
+}
+.proj-card:hover{border-color:var(--accent);box-shadow:0 24px 48px -20px var(--accent-glow);}
+@media(max-width:760px){.proj-card{grid-template-columns:1fr;text-align:left;}}
+
+.proj-index{
+  font-family:var(--mono);font-size:2.2rem;font-weight:600;
+  -webkit-text-stroke:1px var(--border); color:transparent;
+}
+.proj-title{font-family:var(--head);font-size:1.35rem;font-weight:700;margin-bottom:0.5rem;}
+.proj-title .live-dot{
+  display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;
+  margin-left:10px;box-shadow:0 0 8px #22c55e;
+}
+.proj-desc{color:var(--muted);font-size:0.92rem;margin-bottom:0.9rem;max-width:480px;}
+.proj-stack{display:flex;gap:8px;flex-wrap:wrap;}
+.proj-stack span{
+  font-family:var(--mono);font-size:0.7rem;color:var(--accent);background:rgba(56,189,248,0.08);
+  padding:4px 10px;border-radius:6px;border:1px solid rgba(56,189,248,0.18);
+}
+.proj-link{
+  font-family:var(--mono);font-size:0.8rem;color:var(--text);border:1px solid var(--border);
+  padding:10px 18px;border-radius:8px;white-space:nowrap;transition:all .2s;
+}
+.proj-link:hover{border-color:var(--accent);color:var(--accent);}
+.proj-card.placeholder{opacity:0.55;border-style:dashed;}
+.proj-card.placeholder .proj-link{pointer-events:none;}
+
+.contact-box{
+  background:linear-gradient(135deg, var(--surface), var(--surface-2));
+  border:1px solid var(--border);border-radius:20px;padding:3.5rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.contact-box::before{
+  content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle, var(--accent-glow), transparent 70%);
+  top:-200px;left:50%;transform:translateX(-50%);filter:blur(30px);
+}
+.contact-box h2{font-family:var(--head);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:1rem;position:relative;}
+.contact-box p{color:var(--muted);max-width:440px;margin:0 auto 2rem;position:relative;}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
+
+footer{
+  text-align:center;padding:2.5rem 1.5rem;color:var(--muted);font-size:0.82rem;
+  font-family:var(--mono);border-top:1px solid var(--border);position:relative;z-index:1;
+}
+footer .dot{color:var(--accent);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  html{scroll-behavior:auto;}
+}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="dot"></span>samir.dev</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">AVAILABLE FOR WORK · DOHUK, IQ</div>
+      <h1>Building reliable apps<br>with <span class="accent">Laravel</span><br>and clean code.</h1>
+      <p class="lede">I'm Samir Bahjat — a Laravel developer from Dohuk, Kurdistan Region, focused on shipping practical web and native apps with Laravel, Livewire, and NativePHP.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>3+</b>Years Focus</div>
+        <div><b>1</b>Live Production App</div>
+        <div><b>NativePHP</b>Current Focus</div>
+      </div>
+    </div>
+
+    <div class="term" id="termCard">
+      <div class="term-bar">
+        <span></span><span></span><span></span>
+        <span class="term-title">samir@dohuk — migration.php</span>
+      </div>
+      <div class="term-body">
+<div><span class="ln">1</span><span class="kw">&lt;?php</span></div>
+<div><span class="ln">2</span></div>
+<div><span class="ln">3</span><span class="kw">class</span> <span class="cls">Developer</span> <span class="kw">extends</span> <span class="cls">Model</span></div>
+<div><span class="ln">4</span>{</div>
+<div><span class="ln">5</span>&nbsp;&nbsp;<span class="kw">protected</span> $fillable = [</div>
+<div><span class="ln">6</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'name'</span> =&gt; <span class="str">'Samir Bahjat'</span>,</div>
+<div><span class="ln">7</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'role'</span> =&gt; <span class="str">'Laravel Developer'</span>,</div>
+<div><span class="ln">8</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'based_in'</span> =&gt; <span class="str">'Etit, Duhok'</span>,</div>
+<div><span class="ln">9</span>&nbsp;&nbsp;];</div>
+<div><span class="ln">10</span></div>
+<div><span class="ln">11</span>&nbsp;&nbsp;<span class="com">// always learning, always shipping</span></div>
+<div><span class="ln">12</span>&nbsp;&nbsp;<span class="kw">public function</span> <span class="fn">stack</span>()</div>
+<div><span class="ln">13</span>&nbsp;&nbsp;{</div>
+<div><span class="ln">14</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> [<span class="str">'Laravel'</span>, <span class="str">'Livewire'</span>,</div>
+<div><span class="ln">15</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'NativePHP'</span>, <span class="str">'MySQL'</span>];</div>
+<div><span class="ln">16</span>&nbsp;&nbsp;}</div>
+<div><span class="ln">17</span>}<span class="cursor-blink"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">01 / About</span>
+      <h2 class="section-title">A bit about my background.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="avatar-block">SB</div>
+        <div class="about-name">Samir Bahjat</div>
+        <div class="about-role">Laravel Developer</div>
+        <div class="about-edu">
+          🎓 Information Technology, Akre Technical Collage<br>
+          Duhok Polytechnic University
+        </div>
+      </div>
+      <div class="about-body reveal">
+        <p>I'm a <strong>Laravel developer</strong> based in Dohuk, graduated from the <strong>IT Department at Akre Technical Collage, Duhok Polytechnic University</strong>. I build practical, production-ready web applications — from real-time admin dashboards to public-facing systems people actually rely on.</p>
+        <p>My day-to-day stack is <strong>Laravel, Livewire, Bootstrap 5, and MySQL</strong>. I care about clean, maintainable code over clever shortcuts, and I like solving the unglamorous problems — deployment quirks, file storage, server configs — that decide whether an app actually works in production, not just on localhost.</p>
+        <p>Right now I'm focused on <strong>NativePHP</strong>, turning the Laravel apps I already know how to build into native desktop and mobile experiences without switching ecosystems.</p>
+        <div class="focus-tags">
+          <span class="focus-tag">Laravel</span>
+          <span class="focus-tag">Livewire</span>
+          <span class="focus-tag">NativePHP</span>
+          <span class="focus-tag">MySQL</span>
+          <span class="focus-tag">Bootstrap 5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">02 / Skills</span>
+      <h2 class="section-title">Tools I build with.</h2>
+      <p class="section-sub">The core stack I use to take a project from migration to deployment.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal" style="--lvl:92%">
+        <span class="skill-icon">🧩</span>
+        <div class="skill-name">Laravel</div>
+        <div class="skill-level">Primary framework</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:85%">
+        <span class="skill-icon">⚡</span>
+        <div class="skill-name">Livewire</div>
+        <div class="skill-level">Reactive components</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:80%">
+        <span class="skill-icon">🎨</span>
+        <div class="skill-name">Bootstrap 5</div>
+        <div class="skill-level">UI &amp; layout</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:88%">
+        <span class="skill-icon">🗄️</span>
+        <div class="skill-name">MySQL</div>
+        <div class="skill-level">Data &amp; schema design</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:65%">
+        <span class="skill-icon">📱</span>
+        <div class="skill-name">NativePHP</div>
+        <div class="skill-level">Currently learning</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:75%">
+        <span class="skill-icon">🔧</span>
+        <div class="skill-name">Server Deploy</div>
+        <div class="skill-level">Hostinger, FFmpeg, SMTP</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:78%">
+        <span class="skill-icon">🔌</span>
+        <div class="skill-name">REST APIs</div>
+        <div class="skill-level">Integration &amp; auth</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:70%">
+        <span class="skill-icon">🗂️</span>
+        <div class="skill-name">Git</div>
+        <div class="skill-level">Version control</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">03 / Projects</span>
+      <h2 class="section-title">Things I've shipped.</h2>
+      <p class="section-sub">A selection of real and in-progress work.</p>
+    </div>
+    <div class="projects-list">
+
+      <div class="proj-card reveal">
+        <div class="proj-index">01</div>
+        <div>
+          <div class="proj-title">Akre Donors<span class="live-dot" title="Live in production"></span></div>
+          <p class="proj-desc">A blood bank management system for Akre — donor registration, blood-type matching, emergency requests, admin post feed with media, and sticker/barcode printing for donations. Built end-to-end and deployed to production.</p>
+          <div class="proj-stack">
+            <span>Laravel</span><span>Livewire</span><span>MySQL</span><span>Bootstrap 5</span>
+          </div>
+        </div>
+        <a href="https://akredoners.com" target="_blank" class="proj-link">akredoners.com ↗</a>
+      </div>
+
+        <div class="proj-card reveal">
+        <div class="proj-index">02</div>
+        <div>
+          <div class="proj-title">Akre Donors<span class="live-dot" title="Live in production"></span></div>
+          <p class="proj-desc">A blood bank management system for Akre — donor registration, blood-type matching, emergency requests, admin post feed with media, and sticker/barcode printing for donations. Built end-to-end and deployed to production.</p>
+          <div class="proj-stack">
+            <span>Laravel</span><span>Livewire</span><span>MySQL</span><span>Bootstrap 5</span>
+          </div>
+        </div>
+        <a href="https://akredoners.com" target="_blank" class="proj-link">akredoners.com ↗</a>
+      </div>
+
+      <div class="proj-card placeholder reveal">
+        <div class="proj-index">03</div>
+        <div>
+          <div class="proj-title">Project Slot</div>
+          <p class="proj-desc">Reserved for a NativePHP build — a good place to show your first native desktop/mobile app.</p>
+          <div class="proj-stack"><span>NativePHP</span><span>—</span></div>
+        </div>
+        <a href="#" class="proj-link">Coming soon</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2>Let's build something.</h2>
+      <p>Open to Laravel and Livewire projects, freelance work, or full-time roles. Reach out and I'll get back to you.</p>
+      <div class="contact-links">
+        <a href="mailto:samirbahjat@gmail.com" class="btn btn-primary">Email Me</a>
+        <a href="https://akredoners.com" target="_blank" class="btn btn-ghost">View Live Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Designed &amp; built by Samir Bahjat <span class="dot">·</span> Dohuk, Kurdistan Region <span class="dot">·</span> <span id="year"></span>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const revealEls = document.querySelectorAll('.reveal, .skill-card');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+const term = document.getElementById('termCard');
+if (window.matchMedia('(min-width: 900px)').matches) {
+  term.addEventListener('mousemove', (e) => {
+    const r = term.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    term.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
+  });
+  term.addEventListener('mouseleave', () => {
+    term.style.transform = 'rotateY(0deg) rotateX(0deg)';
+  });
+}
+
+document.querySelectorAll('.proj-card:not(.placeholder)').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg)';
+  });
+});
+</script>
+
+</body>
+</html>
