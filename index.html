@@ -436,6 +436,19 @@ footer .dot{color:var(--accent);}
         <div class="skill-level">Data &amp; schema design</div>
         <div class="skill-bar"><div class="skill-bar-fill"></div></div>
       </div>
+      <div 
+  class="skill-card reveal" 
+  x-data="{ lvl: 70 }" 
+  style="--lvl:70%"
+>
+  <span class="skill-icon">💻</span>
+  <div class="skill-name">Git</div>
+  <div class="skill-level">Version control</div>
+  <div class="skill-bar">
+    <div class="skill-bar-fill" :style="`width: ${lvl}%`"></div>
+  </div>
+</div>
+
       <div class="skill-card reveal" style="--lvl:65%">
         <span class="skill-icon">📱</span>
         <div class="skill-name">NativePHP</div>
@@ -488,7 +501,7 @@ footer .dot{color:var(--accent);}
         <div class="proj-card reveal">
         <div class="proj-index">02</div>
         <div>
-          <div class="proj-title">UFO cars<span ></span></div>
+          <div class="proj-title">UFO cars</div>
           <p class="proj-desc"> Developed a dynamic automotive e-commerce solution using Laravel and Livewire to support 
 seamless multi-property vehicle browsing and listing.</p>
           <div class="proj-stack">
@@ -504,7 +517,7 @@ seamless multi-property vehicle browsing and listing.</p>
       <div class="proj-card  reveal">
         <div class="proj-index">03</div>
         <div>
-          <div class="proj-title" class="live-dot" title="Live in production">Task List App</div>
+          <div class="proj-title" >Task List App<spanclass="live-dot" title="Live in production" ></span></div>
           <p class="proj-desc">Laravel app to do a list of task for work home or education tasks </p>
           <div class="proj-stack"><span>Laravel</span><span>Tailwind Css</span><span>Alpine.js</span></div>
         </div>
