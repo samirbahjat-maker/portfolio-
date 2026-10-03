@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samir Bahjat — Laravel Developer</title>
+<title>Samir Bahjat — Full-Stack & Embedded Software Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -88,28 +88,16 @@ nav.scrolled{border-bottom-color:var(--border);background:rgba(15,23,42,0.85);}
   padding:7px 16px;border-radius:8px;color:var(--text);transition:all .2s;
 }
 .nav-cta:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 16px var(--accent-glow);}
-.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
-
-@media(max-width:760px){
-  .nav-links{display:none;}
-  .nav-toggle{display:block;}
-}
 
 .hero{
   min-height:100vh;display:flex;align-items:center;
-  position:relative;z-index:1;padding-top:80px;
+  position:relative;z-index:1;padding-top:100px;padding-bottom:50px;
 }
 .hero-grid{
   display:grid;grid-template-columns:1.1fr 0.9fr;gap:3rem;align-items:center;width:100%;
 }
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.5rem;}}
-.avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the photo fills the box perfectly without stretching */
-  position: relative;
-  z-index: 1;
-}
+
 .eyebrow{
   font-family:var(--mono);font-size:0.78rem;color:var(--accent);
   display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;letter-spacing:0.02em;
@@ -117,15 +105,15 @@ nav.scrolled{border-bottom-color:var(--border);background:rgba(15,23,42,0.85);}
 .eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
 
 .hero h1{
-  font-family:var(--head);font-size:clamp(2.4rem, 5.5vw, 4.2rem);
-  font-weight:700;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.25rem;
+  font-family:var(--head);font-size:clamp(2.2rem, 5vw, 3.8rem);
+  font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem;
 }
 .hero h1 .accent{
   background:linear-gradient(135deg, var(--accent), var(--accent-2));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .hero p.lede{
-  font-size:1.05rem;color:var(--muted);max-width:480px;margin-bottom:2rem;
+  font-size:1.02rem;color:var(--muted);max-width:500px;margin-bottom:2rem;
 }
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:2.5rem;}
 .btn{
@@ -179,7 +167,7 @@ nav.scrolled{border-bottom-color:var(--border);background:rgba(15,23,42,0.85);}
 }
 @keyframes blink{50%{opacity:0;}}
 
-section{position:relative;z-index:1;padding:7rem 0;}
+section{position:relative;z-index:1;padding:5.5rem 0;}
 .section-head{margin-bottom:3rem;}
 .section-num{
   font-family:var(--mono);font-size:0.78rem;color:var(--accent);margin-bottom:0.75rem;
@@ -201,20 +189,16 @@ section{position:relative;z-index:1;padding:7rem 0;}
 .avatar-block{
   width:100%;aspect-ratio:1;border-radius:14px;margin-bottom:1.5rem;
   background:linear-gradient(135deg, var(--surface-2), var(--surface));
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--head);font-size:3.5rem;font-weight:700;color:var(--accent);
-  position:relative;overflow:hidden;
+  border:1px solid var(--border);position:relative;overflow:hidden;
 }
-.avatar-block::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 30% 20%, var(--accent-glow), transparent 60%);
+.avatar-img {
+  width: 100%;height: 100%;object-fit: cover;position: relative;z-index: 1;
 }
 .about-name{font-family:var(--head);font-size:1.3rem;font-weight:700;}
 .about-role{color:var(--accent);font-family:var(--mono);font-size:0.82rem;margin-top:4px;}
-.about-edu{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);font-size:0.85rem;color:var(--muted);}
+.about-edu{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);font-size:0.85rem;color:var(--muted);line-height:1.7;}
 
-.about-body p{color:var(--muted);margin-bottom:1.25rem;font-size:1rem;}
+.about-body p{color:var(--muted);margin-bottom:1.25rem;font-size:0.98rem;}
 .about-body strong{color:var(--text);}
 .focus-tags{display:flex;gap:10px;margin-top:1.5rem;flex-wrap:wrap;}
 .focus-tag{
@@ -245,13 +229,12 @@ section{position:relative;z-index:1;padding:7rem 0;}
   background:var(--surface);border:1px solid var(--border);border-radius:18px;
   padding:2.25rem;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;
   transform-style:preserve-3d;transition:transform .25s ease-out, border-color .25s, box-shadow .25s;
-  cursor:default;
 }
 .proj-card:hover{border-color:var(--accent);box-shadow:0 24px 48px -20px var(--accent-glow);}
 @media(max-width:760px){.proj-card{grid-template-columns:1fr;text-align:left;}}
 
 .proj-index{
-  font-family:var(--mono);font-size:2.2rem;font-weight:600;
+  font-family:var(--mono);font-size:2rem;font-weight:600;
   -webkit-text-stroke:1px var(--border); color:transparent;
 }
 .proj-title{font-family:var(--head);font-size:1.35rem;font-weight:700;margin-bottom:0.5rem;}
@@ -259,7 +242,7 @@ section{position:relative;z-index:1;padding:7rem 0;}
   display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;
   margin-left:10px;box-shadow:0 0 8px #22c55e;
 }
-.proj-desc{color:var(--muted);font-size:0.92rem;margin-bottom:0.9rem;max-width:480px;}
+.proj-desc{color:var(--muted);font-size:0.92rem;margin-bottom:0.9rem;max-width:520px;line-height:1.6;}
 .proj-stack{display:flex;gap:8px;flex-wrap:wrap;}
 .proj-stack span{
   font-family:var(--mono);font-size:0.7rem;color:var(--accent);background:rgba(56,189,248,0.08);
@@ -270,8 +253,19 @@ section{position:relative;z-index:1;padding:7rem 0;}
   padding:10px 18px;border-radius:8px;white-space:nowrap;transition:all .2s;
 }
 .proj-link:hover{border-color:var(--accent);color:var(--accent);}
-.proj-card.placeholder{opacity:0.55;border-style:dashed;}
-.proj-card.placeholder .proj-link{pointer-events:none;}
+
+.acad-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:1.5rem;}
+@media(max-width:760px){.acad-grid{grid-template-columns:1fr;}}
+.acad-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:1.75rem;display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .25s, border-color .25s;
+}
+.acad-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+.acad-tag{font-family:var(--mono);font-size:0.72rem;color:var(--accent);margin-bottom:0.5rem;}
+.acad-title{font-family:var(--head);font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;}
+.acad-desc{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:1.25rem;}
+.acad-instructor{font-family:var(--mono);font-size:0.75rem;color:var(--text);border-top:1px solid var(--border);padding-top:0.75rem;}
 
 .contact-box{
   background:linear-gradient(135deg, var(--surface), var(--surface-2));
@@ -313,6 +307,7 @@ footer .dot{color:var(--accent);}
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#academic">Academic Exchange</a>
       <a href="#contact">Contact</a>
     </div>
     <a href="#contact" class="nav-cta">Get in touch</a>
@@ -322,43 +317,42 @@ footer .dot{color:var(--accent);}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">AVAILABLE FOR WORK · DOHUK, IQ</div>
-      <h1>Building reliable apps<br>with <span class="accent">Laravel</span><br>and clean code.</h1>
-      <p class="lede">I'm Samir Bahjat — a Laravel developer from Dohuk, Kurdistan Region, focused on shipping practical web and native apps with Laravel, Livewire, and NativePHP.</p>
+      <div class="eyebrow">AVAILABLE FOR WORK · DUHOK, IQ</div>
+      <h1>Building full-stack apps & <span class="accent">embedded systems</span> with precision.</h1>
+      <p class="lede">I'm Samir Bahjat — a Software Engineer from Duhok specializing in web applications (Laravel, Livewire), cross-platform mobile apps (Flutter), and hardware-level embedded architecture.</p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects →</a>
         <a href="#contact" class="btn btn-ghost">Contact Me</a>
       </div>
       <div class="hero-meta">
-        <div><b>3+</b>Years Focus</div>
-        <div><b>1</b>Live Production App</div>
-        <div><b>Laravel</b>Current Focus</div>
+        <div><b>3+</b> Years Focus</div>
+        <div><b>1</b> Production App</div>
+        <div><b>4</b> MUST Courses</div>
       </div>
     </div>
 
     <div class="term" id="termCard">
       <div class="term-bar">
         <span></span><span></span><span></span>
-        <span class="term-title">samir@dohuk — migration.php</span>
+        <span class="term-title">samir@duhok — profile.php</span>
       </div>
       <div class="term-body">
 <div><span class="ln">1</span><span class="kw">&lt;?php</span></div>
 <div><span class="ln">2</span></div>
-<div><span class="ln">3</span><span class="kw">class</span> <span class="cls">Developer</span> <span class="kw">extends</span> <span class="cls">Model</span></div>
+<div><span class="ln">3</span><span class="kw">class</span> <span class="cls">Engineer</span> <span class="kw">extends</span> <span class="cls">Developer</span></div>
 <div><span class="ln">4</span>{</div>
-<div><span class="ln">5</span>&nbsp;&nbsp;<span class="kw">protected</span> $fillable = [</div>
+<div><span class="ln">5</span>&nbsp;&nbsp;<span class="kw">protected</span> $profile = [</div>
 <div><span class="ln">6</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'name'</span> =&gt; <span class="str">'Samir Bahjat'</span>,</div>
-<div><span class="ln">7</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'role'</span> =&gt; <span class="str">'Laravel Developer'</span>,</div>
-<div><span class="ln">8</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'based_in'</span> =&gt; <span class="str">'Etit, Duhok'</span>,</div>
+<div><span class="ln">7</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'degree'</span> =&gt; <span class="str">'IT, Akre Tech College'</span>,</div>
+<div><span class="ln">8</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'exchange'</span> =&gt; <span class="str">'MUST University (Egypt)'</span>,</div>
 <div><span class="ln">9</span>&nbsp;&nbsp;];</div>
 <div><span class="ln">10</span></div>
-<div><span class="ln">11</span>&nbsp;&nbsp;<span class="com">// always learning, always shipping</span></div>
-<div><span class="ln">12</span>&nbsp;&nbsp;<span class="kw">public function</span> <span class="fn">stack</span>()</div>
-<div><span class="ln">13</span>&nbsp;&nbsp;{</div>
-<div><span class="ln">14</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> [<span class="str">'Laravel'</span>, <span class="str">'Livewire'</span>,</div>
-<div><span class="ln">15</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'NativePHP'</span>, <span class="str">'MySQL'</span>];</div>
-<div><span class="ln">16</span>&nbsp;&nbsp;}</div>
-<div><span class="ln">17</span>}<span class="cursor-blink"></span></div>
+<div><span class="ln">11</span>&nbsp;&nbsp;<span class="kw">public function</span> <span class="fn">capabilities</span>()</div>
+<div><span class="ln">12</span>&nbsp;&nbsp;{</div>
+<div><span class="ln">13</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> [<span class="str">'Laravel'</span>, <span class="str">'Livewire'</span>, <span class="str">'Flutter'</span>,</div>
+<div><span class="ln">14</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'C++/Arduino'</span>, <span class="str">'Python ML'</span>, <span class="str">'Cisco'</span>];</div>
+<div><span class="ln">15</span>&nbsp;&nbsp;}</div>
+<div><span class="ln">16</span>}<span class="cursor-blink"></span></div>
       </div>
     </div>
   </div>
@@ -368,30 +362,32 @@ footer .dot{color:var(--accent);}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-num">01 / About</span>
-      <h2 class="section-title">A bit about my background.</h2>
+      <h2 class="section-title">Background & Academic Foundations.</h2>
     </div>
     <div class="about-grid">
       <div class="about-card reveal">
         <div class="avatar-block">
-  <img src="profileimage.jpg" alt="Samir Bahjat" class="avatar-img">
-</div>
+          <img src="profileimage.jpg" alt="Samir Bahjat" class="avatar-img">
+        </div>
         <div class="about-name">Samir Bahjat</div>
-        <div class="about-role">Laravel Developer</div>
+        <div class="about-role">Software & Embedded Systems Engineer</div>
         <div class="about-edu">
-          🎓 Information Technology, Akre Technical Collage<br>
-          Duhok Polytechnic University
+          🎓 <strong>Information Technology</strong><br>
+          Akre Technical College — Duhok Polytechnic University<br><br>
+          📜 <strong>International Exchange Certificate</strong><br>
+          Misr University for Science & Technology (MUST, Egypt)
         </div>
       </div>
       <div class="about-body reveal">
-        <p>I'm a <strong>Laravel developer</strong> based in Dohuk, graduated from the <strong>IT Department at Akre Technical Collage, Duhok Polytechnic University</strong>. I build practical, production-ready web applications — from real-time admin dashboards to public-facing systems people actually rely on.</p>
-        <p>My day-to-day stack is <strong>Laravel, Livewire, Bootstrap 5, and MySQL</strong>. I care about clean, maintainable code over clever shortcuts, and I like solving the unglamorous problems — deployment quirks, file storage, server configs — that decide whether an app actually works in production, not just on localhost.</p>
-        <p>Right now I'm focused on <strong>NativePHP</strong>, turning the Laravel apps I already know how to build into native desktop and mobile experiences without switching ecosystems.</p>
+        <p>I am an <strong>IT Graduate</strong> from Akre Technical College (Duhok Polytechnic University) with an international exchange background at <strong>Misr University for Science & Technology (MUST)</strong> in Egypt.</p>
+        <p>My engineering mindset spans from high-level web and mobile ecosystems down to hardware registers. On the software side, I specialize in <strong>Laravel, Livewire, MySQL, and Flutter</strong>, building production systems like donor matching platforms and interactive cross-platform UIs. On the hardware side, I design and build micro-controller circuits using <strong>C++/Arduino</strong>, serial bus architectures (I2C), and wireless automation.</p>
+        <p>Whether configuring Cisco multi-branch networks, writing machine learning pipelines in Python, or deploying Laravel apps to production servers, I prioritize structured architecture, reliability, and maintainable clean code.</p>
         <div class="focus-tags">
-          <span class="focus-tag">Laravel</span>
-          <span class="focus-tag">Livewire</span>
-          <span class="focus-tag">NativePHP</span>
-          <span class="focus-tag">MySQL</span>
-          <span class="focus-tag">Bootstrap 5</span>
+          <span class="focus-tag">Laravel & Livewire</span>
+          <span class="focus-tag">Flutter Mobile</span>
+          <span class="focus-tag">Embedded C++</span>
+          <span class="focus-tag">Python & Scikit-Learn</span>
+          <span class="focus-tag">Cisco Networking</span>
         </div>
       </div>
     </div>
@@ -402,76 +398,56 @@ footer .dot{color:var(--accent);}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="section-num">02 / Skills</span>
-      <h2 class="section-title">Tools I build with.</h2>
-      <p class="section-sub">The core stack I use to take a project from migration to deployment.</p>
+      <h2 class="section-title">Technical Proficiency.</h2>
+      <p class="section-sub">Tools, languages, and hardware frameworks I use to engineer end-to-end solutions.</p>
     </div>
     <div class="skills-grid">
       <div class="skill-card reveal" style="--lvl:92%">
         <span class="skill-icon">🧩</span>
         <div class="skill-name">Laravel</div>
-        <div class="skill-level">Primary framework</div>
-        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
-      </div>
-      <div class="skill-card reveal" style="--lvl:85%">
-        <span class="skill-icon">⚡</span>
-        <div class="skill-name">Livewire</div>
-        <div class="skill-level">Reactive components</div>
-        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
-      </div>
-      <div class="skill-card reveal" style="--lvl:80%">
-        <span class="skill-icon">🎨</span>
-        <div class="skill-name">Bootstrap 5</div>
-        <div class="skill-level">UI &amp; layout</div>
-        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
-      </div>
-      <div class="skill-card reveal" style="--lvl:80%">
-        <span class="skill-icon">🎨</span>
-        <div class="skill-name">Tailwind CSS</div>
-        <div class="skill-level">UI &amp; layout</div>
+        <div class="skill-level">Primary backend framework</div>
         <div class="skill-bar"><div class="skill-bar-fill"></div></div>
       </div>
       <div class="skill-card reveal" style="--lvl:88%">
-        <span class="skill-icon">🗄️</span>
-        <div class="skill-name">MySQL</div>
-        <div class="skill-level">Data &amp; schema design</div>
+        <span class="skill-icon">⚡</span>
+        <div class="skill-name">Livewire</div>
+        <div class="skill-level">Reactive full-stack UI</div>
         <div class="skill-bar"><div class="skill-bar-fill"></div></div>
       </div>
-      <div 
-  class="skill-card reveal" 
-  x-data="{ lvl: 85 }" 
-  style="--lvl:85%"
->
-  <span class="skill-icon">🌲</span>
-  <div class="skill-name">Alpine.js</div>
-  <div class="skill-level">Frontend Interactivity</div>
-  <div class="skill-bar">
-    <div class="skill-bar-fill" :style="`width: ${lvl}%`"></div>
-  </div>
-</div>
-
-
-      <div class="skill-card reveal" style="--lvl:65%">
+      <div class="skill-card reveal" style="--lvl:80%">
         <span class="skill-icon">📱</span>
-        <div class="skill-name">NativePHP</div>
-        <div class="skill-level">Currently learning</div>
+        <div class="skill-name">Flutter & Dart</div>
+        <div class="skill-level">Cross-platform mobile</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:82%">
+        <span class="skill-icon">🤖</span>
+        <div class="skill-name">Embedded C++</div>
+        <div class="skill-level">Arduino, L298N, I2C, Sensors</div>
+        <div class="skill-bar"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--lvl:85%">
+        <span class="skill-icon">🗄️</span>
+        <div class="skill-name">MySQL</div>
+        <div class="skill-level">Schema design & indexing</div>
         <div class="skill-bar"><div class="skill-bar-fill"></div></div>
       </div>
       <div class="skill-card reveal" style="--lvl:75%">
-        <span class="skill-icon">🔧</span>
-        <div class="skill-name">Server Deploy</div>
-        <div class="skill-level">Hostinger, FFmpeg, SMTP</div>
+        <span class="skill-icon">🧠</span>
+        <div class="skill-name">Python & ML</div>
+        <div class="skill-level">Pandas, Scikit-Learn, Models</div>
         <div class="skill-bar"><div class="skill-bar-fill"></div></div>
       </div>
       <div class="skill-card reveal" style="--lvl:78%">
-        <span class="skill-icon">🔌</span>
-        <div class="skill-name">REST APIs</div>
-        <div class="skill-level">Integration &amp; auth</div>
+        <span class="skill-icon">🌐</span>
+        <div class="skill-name">Cisco Networking</div>
+        <div class="skill-level">Static Routing, DHCP, Topologies</div>
         <div class="skill-bar"><div class="skill-bar-fill"></div></div>
       </div>
-      <div class="skill-card reveal" style="--lvl:50%">
-        <span class="skill-icon">🗂️</span>
-        <div class="skill-name">Git</div>
-        <div class="skill-level">Version control</div>
+      <div class="skill-card reveal" style="--lvl:80%">
+        <span class="skill-icon">🎨</span>
+        <div class="skill-name">Tailwind & Bootstrap</div>
+        <div class="skill-level">Modern responsive layout</div>
         <div class="skill-bar"><div class="skill-bar-fill"></div></div>
       </div>
     </div>
@@ -481,9 +457,9 @@ footer .dot{color:var(--accent);}
 <section id="projects">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="section-num">04 / Projects</span>
-      <h2 class="section-title">Things I've shipped.</h2>
-      <p class="section-sub">A selection of real and in-progress work.</p>
+      <span class="section-num">03 / Projects</span>
+      <h2 class="section-title">Software & Hardware Systems.</h2>
+      <p class="section-sub">Production web applications, mobile interfaces, and standalone hardware builds.</p>
     </div>
     <div class="projects-list">
 
@@ -491,7 +467,7 @@ footer .dot{color:var(--accent);}
         <div class="proj-index">01</div>
         <div>
           <div class="proj-title">Akre Donors<span class="live-dot" title="Live in production"></span></div>
-          <p class="proj-desc">A blood bank management system for Akre — donor registration, blood-type matching, emergency requests, admin post feed with media, and sticker/barcode printing for donations. Built end-to-end and deployed to production.</p>
+          <p class="proj-desc">A production blood bank management system built for Akre. Features donor registration, real-time blood-type matching, emergency post feeds, media uploading, and barcode/sticker generation for donation tracking.</p>
           <div class="proj-stack">
             <span>Laravel</span><span>Livewire</span><span>MySQL</span><span>Bootstrap 5</span>
           </div>
@@ -499,39 +475,113 @@ footer .dot{color:var(--accent);}
         <a href="https://akredoners.com" target="_blank" class="proj-link">akredoners.com ↗</a>
       </div>
 
-        <div class="proj-card reveal">
+      <div class="proj-card reveal">
         <div class="proj-index">02</div>
         <div>
-          <div class="proj-title">UFO cars</div>
-          <p class="proj-desc"> Developed a dynamic automotive e-commerce solution using Laravel and Livewire to support 
-seamless multi-property vehicle browsing and listing.</p>
+          <div class="proj-title">Bluetooth 4WD Robotic Car</div>
+          <p class="proj-desc">A hardware capstone featuring an Arduino Uno, HC-05 Bluetooth module, and L298N H-Bridge motor driver. Implemented differential skid-steering, pulse-width modulation (PWM) speed control, and an isolated dual-battery power supply with a unified common ground.</p>
           <div class="proj-stack">
-            <span>Laravel</span><span>Livewire</span><span>MySQL</span><span>Bootstrap 5</span>
-            <span>
-              AdminLTE4
-            </span>
+            <span>Embedded C++</span><span>Arduino</span><span>HC-05 Serial</span><span>L298N Driver</span>
           </div>
         </div>
-        <a href="https://github.com/samirbahjat-maker/ufocars" target="_blank" class="proj-link">Repository on github</a>
+        <span class="proj-link" style="opacity:0.7;">Hardware Build</span>
       </div>
 
-      <div class="proj-card  reveal">
+      <div class="proj-card reveal">
         <div class="proj-index">03</div>
         <div>
-          <div class="proj-title" >Task List App<spanclass="live-dot" title="Live in production" ></span></div>
-          <p class="proj-desc">Laravel app to do a list of task for work home or education tasks </p>
-          <div class="proj-stack"><span>Laravel</span><span>Tailwind Css</span><span>Alpine.js</span></div>
+          <div class="proj-title">UFO Cars</div>
+          <p class="proj-desc">Automotive e-commerce and inventory platform supporting multi-property vehicle browsing, filtering, listing management, and custom admin dashboard panels.</p>
+          <div class="proj-stack">
+            <span>Laravel</span><span>Livewire</span><span>MySQL</span><span>AdminLTE4</span>
+          </div>
         </div>
-        <a href="https://github.com/samirbahjat-maker/task-list-laravel" class="proj-link">Repository on github</a>
+        <a href="https://github.com/samirbahjat-maker/ufocars" target="_blank" class="proj-link">Repository ↗</a>
       </div>
-      <div class="proj-card  reveal">
+
+      <div class="proj-card reveal">
         <div class="proj-index">04</div>
         <div>
-          <div class="proj-title" >Book Review<spanclass="live-dot" title="Live in production" ></span></div>
-          <p class="proj-desc">A modern full-stack web application designed to act as a dynamic digital catalog and content scoring platform. The application allows users to discover books, browse community feedback, and submit granular ratings and reviews through an optimized, secure MVC architecture. </p>
-          <div class="proj-stack"><span>Laravel</span><span>Tailwind Css</span></div>
+          <div class="proj-title">Book Review Catalog</div>
+          <p class="proj-desc">Full-stack web application for book discovery and scoring. Built with an optimized MVC architecture allowing users to filter feedback by month and rating score.</p>
+          <div class="proj-stack">
+            <span>Laravel</span><span>Tailwind CSS</span><span>Blade</span>
+          </div>
         </div>
-        <a href="https://github.com/samirbahjat-maker/book-review" class="proj-link">Repository on github</a>
+        <a href="https://github.com/samirbahjat-maker/book-review" target="_blank" class="proj-link">Repository ↗</a>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-index">05</div>
+        <div>
+          <div class="proj-title">Flutter Profile View Engine</div>
+          <p class="proj-desc">Native cross-platform mobile screen application featuring custom MaterialApp structures, circular avatar network clipping (`ClipOval`), nested layouts, and interactive menu navigation.</p>
+          <div class="proj-stack">
+            <span>Flutter</span><span>Dart</span><span>Material UI</span>
+          </div>
+        </div>
+        <span class="proj-link" style="opacity:0.7;">Mobile App</span>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-index">06</div>
+        <div>
+          <div class="proj-title">Task List Manager</div>
+          <p class="proj-desc">Task management tool supporting full CRUD operations, completion state toggling, filtered views, and lightweight frontend interactivity.</p>
+          <div class="proj-stack">
+            <span>Laravel</span><span>Tailwind CSS</span><span>Alpine.js</span>
+          </div>
+        </div>
+        <a href="https://github.com/samirbahjat-maker/task-list-laravel" target="_blank" class="proj-link">Repository ↗</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="academic">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">04 / Academic Exchange</span>
+      <h2 class="section-title">Misr University Program (MUST, Egypt).</h2>
+      <p class="section-sub">Coursework, technical reports, and hands-on laboratory implementations certified during the summer exchange program in Egypt.</p>
+    </div>
+    <div class="acad-grid">
+
+      <div class="acad-card reveal">
+        <div>
+          <div class="acad-tag">EMBEDDED SYSTEMS</div>
+          <div class="acad-title">Microcontroller Architectures & Capstone</div>
+          <p class="acad-desc">Completed 11 hands-on lab modules covering GPIO debouncing, 7-segment displays, LDR light sensing, ultrasonic distance timing, I2C LCD screens, keypad matrix scanning, and PWM motor control, culminating in the Bluetooth 4WD car build.</p>
+        </div>
+        <div class="acad-instructor">Supervised by: Ahmed Tarek Al-Ashry</div>
+      </div>
+
+      <div class="acad-card reveal">
+        <div>
+          <div class="acad-tag">ARTIFICIAL INTELLIGENCE</div>
+          <div class="acad-title">Titanic Machine Learning Classification</div>
+          <p class="acad-desc">Executed a machine learning workflow on the Titanic dataset using Python. Cleaned missing data, applied label encoding, and trained KNN, SVM, and Decision Tree classifiers — achieving a peak 75.98% accuracy with Decision Trees.</p>
+        </div>
+        <div class="acad-instructor">Supervised by: Yara Tarek</div>
+      </div>
+
+      <div class="acad-card reveal">
+        <div>
+          <div class="acad-tag">ENTERPRISE NETWORKING</div>
+          <div class="acad-title">Multi-Branch Network & Static Routing</div>
+          <p class="acad-desc">Designed a 4-branch enterprise infrastructure in Cisco Packet Tracer incorporating Star, Half-Mesh, Full-Mesh, and Ring topologies. Implemented Classful LAN subnets, DHCP server pools, /30 WAN serial links, and inter-branch static routing.</p>
+        </div>
+        <div class="acad-instructor">Supervised by: Dr. Doha Taha & T.A. Ahmed Abdallah</div>
+      </div>
+
+      <div class="acad-card reveal">
+        <div>
+          <div class="acad-tag">MOBILE DEVELOPMENT</div>
+          <div class="acad-title">Flutter Architecture & UI Engineering</div>
+          <p class="acad-desc">Studied Flutter rendering internals (Widget, Element, and Render trees), lifecycle state management (`setState`), navigation stacks, scrollable `ListView` performance, and custom widget design.</p>
+        </div>
+        <div class="acad-instructor">Supervised by: Ms. Rojina</div>
       </div>
 
     </div>
@@ -541,18 +591,18 @@ seamless multi-property vehicle browsing and listing.</p>
 <section id="contact">
   <div class="wrap">
     <div class="contact-box reveal">
-      <h2>Let's build something.</h2>
-      <p>Open to Laravel and Livewire projects, freelance work, or full-time roles. Reach out and I'll get back to you.</p>
+      <h2>Let's build something together.</h2>
+      <p>Open to software development projects, embedded systems contracts, freelance opportunities, or full-time roles.</p>
       <div class="contact-links">
         <a href="mailto:samirbahjat@gmail.com" class="btn btn-primary">Email Me</a>
-        <a href="https://akredoners.com" target="_blank" class="btn btn-ghost">View Live Project</a>
+        <a href="https://akredoners.com" target="_blank" class="btn btn-ghost">View Production Live Site</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  Designed &amp; built by Samir Bahjat <span class="dot">·</span> Dohuk, Kurdistan Region <span class="dot">·</span> <span id="year"></span>
+  Designed &amp; built by Samir Bahjat <span class="dot">·</span> Duhok, Kurdistan Region <span class="dot">·</span> <span id="year"></span>
 </footer>
 
 <script>
@@ -563,7 +613,7 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-const revealEls = document.querySelectorAll('.reveal, .skill-card');
+const revealEls = document.querySelectorAll('.reveal, .skill-card, .acad-card');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -587,7 +637,7 @@ if (window.matchMedia('(min-width: 900px)').matches) {
   });
 }
 
-document.querySelectorAll('.proj-card:not(.placeholder)').forEach(card => {
+document.querySelectorAll('.proj-card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const r = card.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - 0.5;
