@@ -59,9 +59,11 @@ a{color:inherit;text-decoration:none;}
   z-index:0;pointer-events:none;filter:blur(50px);opacity:0.6;
 }
 
+/* NAVBAR & MOBILE MENU */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
   background:rgba(9,13,22,0.7);
   border-bottom:1px solid transparent;
   transition:border-color .3s, background .3s;
@@ -73,10 +75,10 @@ nav.scrolled{border-bottom-color:var(--border);background:rgba(9,13,22,0.9);}
 }
 .logo{
   font-family:var(--mono);font-weight:600;font-size:0.95rem;color:var(--text);
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:8px;z-index:102;
 }
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);}
-.nav-links{display:flex;gap:2rem;font-size:0.85rem;color:var(--muted);}
+.nav-links{display:flex;gap:2rem;font-size:0.85rem;color:var(--muted);align-items:center;}
 .nav-links a{transition:color .2s;position:relative;}
 .nav-links a:hover{color:var(--text);}
 .nav-links a::after{
@@ -89,6 +91,73 @@ nav.scrolled{border-bottom-color:var(--border);background:rgba(9,13,22,0.9);}
   padding:7px 16px;border-radius:8px;color:var(--text);transition:all .2s;
 }
 .nav-cta:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 16px var(--accent-glow);}
+
+/* Mobile Menu Toggle Button */
+.menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:8px;
+  z-index:102;
+}
+.hamburger{
+  width:22px;
+  height:16px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hamburger span{
+  display:block;
+  width:100%;
+  height:2px;
+  background-color:var(--text);
+  border-radius:2px;
+  transition:all 0.3s ease-in-out;
+}
+
+/* Mobile styles */
+@media(max-width:860px){
+  .menu-toggle{display:block;}
+  .nav-cta-desktop{display:none;}
+  
+  .nav-links{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:100%;
+    height:100vh;
+    background:rgba(9,13,22,0.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:2.2rem;
+    font-size:1.1rem;
+    transition:right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index:101;
+  }
+  
+  .nav-links.open{
+    right:0;
+  }
+  
+  /* Hamburger transform animation */
+  .menu-toggle.active .hamburger span:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+    background-color:var(--accent);
+  }
+  .menu-toggle.active .hamburger span:nth-child(2){
+    opacity:0;
+  }
+  .menu-toggle.active .hamburger span:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+    background-color:var(--accent);
+  }
+}
 
 .hero{
   min-height:100vh;display:flex;align-items:center;
@@ -325,14 +394,25 @@ footer .dot{color:var(--accent);}
 <nav id="nav">
   <div class="nav-inner">
     <a href="#" class="logo"><span class="dot"></span>samir.dev</a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Laravel Stack</a>
-      <a href="#projects">Laravel Work</a>
-      <a href="#academic">Academic Proof</a>
-      <a href="#contact">Contact</a>
+    
+    <div class="nav-links" id="navLinks">
+      <a href="#about" class="nav-item">About</a>
+      <a href="#skills" class="nav-item">Laravel Stack</a>
+      <a href="#projects" class="nav-item">Laravel Work</a>
+      <a href="#academic" class="nav-item">Academic Proof</a>
+      <a href="#contact" class="nav-item">Contact</a>
+      <a href="#contact" class="nav-cta nav-cta-mobile">Hire Laravel Dev</a>
     </div>
-    <a href="#contact" class="nav-cta">Hire Laravel Dev</a>
+
+    <a href="#contact" class="nav-cta nav-cta-desktop">Hire Laravel Dev</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
   </div>
 </nav>
 
@@ -406,7 +486,7 @@ footer .dot{color:var(--accent);}
       <div class="about-body reveal">
         <p>I am a dedicated <strong>Laravel Developer</strong> based in Duhok. My core mission is building scalable, robust web architectures using <strong>Laravel, Livewire, Alpine.js, Tailwind CSS, and MySQL</strong>.</p>
         <p>I take pride in writing clean, readable PHP code following modern MVC standards. My live production app, <strong>Akre Donors</strong>, showcases my ability to design complex database schemas, manage real-time workflows, implement media uploads, generate barcodes/stickers, and handle deployment on live servers.</p>
-        <p>While Laravel is my primary specialization, my IT degree and exchange studies at MUST (Egypt) gave me a deep, T-shaped engineering foundation in <strong>Mobile UI (Flutter), Machine Learning (Python), Microcontrollers (C++), and Cisco Networking</strong>. This allows me to approach web applications with a holistic technical perspective.</p>
+        <p>While Laravel is my primary specialization, my IT degree and exchange studies at MUST (Egypt) gave me a deep, T-shaped engineering foundation in <strong>Mobile UI (Flutter), Machine Learning (Python), Microcontrollers (C++), and Cisco Networking</strong>[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span). This allows me to approach web applications with a holistic technical perspective.</p>
         <div class="focus-tags">
           <span class="focus-tag">Laravel MVC</span>
           <span class="focus-tag">Livewire 3</span>
@@ -546,7 +626,7 @@ footer .dot{color:var(--accent);}
     <div class="section-head reveal">
       <span class="section-num">04 / Academic & Engineering Breadth</span>
       <h2 class="section-title">International Exchange Experience.</h2>
-      <p class="section-sub">Proof of advanced problem solving and technical versatility verified during my exchange program at Misr University for Science & Technology (MUST, Egypt)[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span).</p>
+      <p class="section-sub">Proof of advanced problem solving and technical versatility verified during my exchange program at Misr University for Science & Technology (MUST, Egypt)[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span).</p>
     </div>
     <div class="acad-grid">
 
@@ -554,36 +634,36 @@ footer .dot{color:var(--accent);}
         <div>
           <div class="acad-tag">CROSS-PLATFORM MOBILE</div>
           <div class="acad-title">Flutter Profile & Navigation Engine</div>
-          <p class="acad-desc">Studied Flutter architecture (Widget, Element, Render trees) and state lifecycle[span_4](start_span)[span_4](end_span). Built a multi-screen mobile UI featuring nested layouts, circular avatar network clipping (`ClipOval`), and custom navigation stacks[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span).</p>
+          <p class="acad-desc">Studied Flutter architecture (Widget, Element, Render trees) and state lifecycle[span_9](start_span)[span_9](end_span). Built a multi-screen mobile UI featuring nested layouts, circular avatar network clipping (`ClipOval`), and custom navigation stacks[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span).</p>
         </div>
-        <div class="acad-instructor">Instructor: Ms. Rojina[span_8](start_span)[span_8](end_span)</div>
+        <div class="acad-instructor">Instructor: Ms. Rojina[span_13](start_span)[span_13](end_span)</div>
       </div>
 
       <div class="acad-card reveal">
         <div>
           <div class="acad-tag">EMBEDDED SYSTEMS & HARDWARE</div>
           <div class="acad-title">Bluetooth 4WD Autonomous Car</div>
-          <p class="acad-desc">Engineered an Arduino Uno capstone with an HC-05 Bluetooth module and L298N motor driver[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span). Implemented differential skid-steering[span_11](start_span)[span_11](end_span), PWM speed control[span_12](start_span)[span_12](end_span), and an isolated dual-battery power grid sharing a common ground[span_13](start_span)[span_13](end_span).</p>
+          <p class="acad-desc">Engineered an Arduino Uno capstone with an HC-05 Bluetooth module and L298N motor driver[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span). Implemented differential skid-steering[span_16](start_span)[span_16](end_span), PWM speed control[span_17](start_span)[span_17](end_span), and an isolated dual-battery power grid sharing a common ground[span_18](start_span)[span_18](end_span).</p>
         </div>
-        <div class="acad-instructor">Instructor: Ahmed Tarek Al-Ashry[span_14](start_span)[span_14](end_span)</div>
+        <div class="acad-instructor">Instructor: Ahmed Tarek Al-Ashry[span_19](start_span)[span_19](end_span)</div>
       </div>
 
       <div class="acad-card reveal">
         <div>
           <div class="acad-tag">MACHINE LEARNING</div>
           <div class="acad-title">Titanic Survival Prediction Pipeline</div>
-          <p class="acad-desc">Implemented a Python ML pipeline using Pandas and Scikit-Learn[span_15](start_span)[span_15](end_span). Cleaned missing data[span_16](start_span)[span_16](end_span), performed label encoding[span_17](start_span)[span_17](end_span), and evaluated KNN, SVM, and Decision Tree models — achieving 75.98% accuracy[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span).</p>
+          <p class="acad-desc">Implemented a Python ML pipeline using Pandas and Scikit-Learn[span_20](start_span)[span_20](end_span). Cleaned missing data[span_21](start_span)[span_21](end_span), performed label encoding[span_22](start_span)[span_22](end_span), and evaluated KNN, SVM, and Decision Tree models — achieving 75.98% accuracy[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span).</p>
         </div>
-        <div class="acad-instructor">Instructor: Yara Tarek[span_22](start_span)[span_22](end_span)</div>
+        <div class="acad-instructor">Instructor: Yara Tarek[span_27](start_span)[span_27](end_span)</div>
       </div>
 
       <div class="acad-card reveal">
         <div>
           <div class="acad-tag">NETWORKING & INFRASTRUCTURE</div>
           <div class="acad-title">Multi-Branch Enterprise Topology</div>
-          <p class="acad-desc">Designed a 4-branch Cisco Packet Tracer network (Star, Half-Mesh, Full-Mesh, Ring topologies)[span_23](start_span)[span_23](end_span). Configured Classful subnets, router DHCP pools, /30 WAN serial links, and static routing[span_24](start_span)[span_24](end_span).</p>
+          <p class="acad-desc">Designed a 4-branch Cisco Packet Tracer network (Star, Half-Mesh, Full-Mesh, Ring topologies)[span_28](start_span)[span_28](end_span). Configured Classful subnets, router DHCP pools, /30 WAN serial links, and static routing[span_29](start_span)[span_29](end_span).</p>
         </div>
-        <div class="acad-instructor">Instructors: Dr. Doha Taha & T.A. Ahmed Abdallah[span_25](start_span)[span_25](end_span)</div>
+        <div class="acad-instructor">Instructors: Dr. Doha Taha & T.A. Ahmed Abdallah[span_30](start_span)[span_30](end_span)</div>
       </div>
 
     </div>
@@ -610,11 +690,33 @@ footer .dot{color:var(--accent);}
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Navigation scroll background
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
 
+// Mobile menu toggle functionality
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const navItems = document.querySelectorAll('.nav-item, .nav-cta-mobile');
+
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  navLinks.classList.toggle('open');
+  document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+});
+
+// Close menu when clicking a link
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    menuToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// Scroll animations
 const revealEls = document.querySelectorAll('.reveal, .skill-card, .acad-card');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -626,6 +728,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 revealEls.forEach(el => io.observe(el));
 
+// Card 3D tilt effects
 const term = document.getElementById('termCard');
 if (window.matchMedia('(min-width: 900px)').matches) {
   term.addEventListener('mousemove', (e) => {
